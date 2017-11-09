@@ -1,0 +1,36 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}My Account{% endblock %}
+
+{% block body %}
+<h1>My account</h1>
+    <b>Informacje o koncie użytkownika.</b>
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ app.user.id}}</td>
+        </tr>
+        <tr>
+            <th>Username</th>
+            <td>{{ app.user.username}}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ app.user.email}}</td>
+        </tr>
+        <tr>
+            <th>Role</th>
+            <td>{{ app.user.roles[0]}}</td>
+        </tr>
+        <tr>
+            <th>Qualifications</th>
+            <td>
+                {% for qualification in app.user.qualifications %}
+                    {{ qualification.name }} <br />
+                {% endfor %}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

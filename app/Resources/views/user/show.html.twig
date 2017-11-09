@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id}}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username}}</td>
+            </tr>
+            <tr>
+                <th>EMail</th>
+                <td>{{ user.email}}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ user.roles[0]}}</td>
+            </tr>
+            <tr>
+                <th>Qualifications</th>
+                <td>
+                    {% for qualification in user.qualifications %}
+                        {{ qualification.name }} <br />
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
