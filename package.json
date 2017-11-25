@@ -1,0 +1,25 @@
+{
+  "name": "ii_project",
+  "version": "1.0.0",
+  "description": "II_project ==========",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rszyszka/MyWebsite.git"
+  },
+  "author": "Rafał Szyszka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rszyszka/MyWebsite/issues"
+  },
+  "homepage": "https://github.com/rszyszka/MyWebsite#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
