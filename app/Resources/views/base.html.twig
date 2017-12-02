@@ -3,20 +3,16 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         {% block stylesheets %}
-
+            <link rel="stylesheet" href="{{ asset('public/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('public/myStyles.css') }}" />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     </head>
-    <body class="container back">
-    <div class="page-header text-center">
-        <h1>Dream job for everyone</h1>
-        <p>Mission, Vission & Perspectives</p>
-    </div>
 
-    <nav class="navbar navbar-default">
+    <body>
+    <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <ul class="nav navbar-nav">
             <li><a href="{{ path('homepage') }}">Home</a></li>
@@ -38,8 +34,17 @@
         </ul>
     </div>
     </nav>
+    <div class="page-header container text-center">
+        <img src="{{ asset('public/work.jpg') }}">
+    </div>
+    <div class="container">
+
 
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('public/node_modules/jquery/dist/jquery.min.js') }}"></script>
+            <script src="{{ asset('public/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+        {% endblock %}
+    </div>
     </body>
 </html>
