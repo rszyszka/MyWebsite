@@ -35,10 +35,10 @@
             <li class="nav-item"><a class="nav-link" href="{{ path('info') }}">O nas</a></li>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <li class="nav-item"><a class="nav-link" href="{{ path('announcements_index') }}">Ogłoszenia</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('user_index') }}">Użytkownicy</a>
                 <li class="nav-item"><a class="nav-link" href="{{ path('account') }}">Moje konto</a></li>
                 {% if is_granted("ROLE_ADMIN") %}
                     <li class="nav-item"><a class="nav-link" href="{{ path('qualifications_index') }}">Kwalifikacje</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('user_index') }}">Użytkownicy</a>
                 {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('fos_user_security_logout') }}">

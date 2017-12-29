@@ -47,4 +47,3 @@ security:
         - { path: ^/announcements/, role: ROLE_USER }
         - { path: ^/qualifications/, role: ROLE_ADMIN }
         - { path: ^/account, role: ROLE_USER }
-        - { path: ^/user, role: ROLE_ADMIN }

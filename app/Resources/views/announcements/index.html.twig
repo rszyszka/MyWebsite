@@ -42,9 +42,8 @@
         {% endfor %}
             </ul>
         </div>
-    <ul>
-        <li>
-            <a class="nav-link" href="{{ path('announcements_new' , { 'user': app.user }) }}">Stwórz nowe ogłoszenie</a>
-        </li>
-    </ul>
+
+    </br>
+    <a class="btn btn-info" href="{{ path('announcements_new' , { 'user': app.user }) }}">Stwórz nowe ogłoszenie</a>
+
 {% endblock %}

@@ -76,4 +76,27 @@ class DefaultController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/filter", name="filter")
+     */
+    public function filterAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $qualifications = $em->getRepository('AppBundle:Qualifications')->findAll();
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->getDoctrine()->getManager()->flush();
+            $var = $request->get("checkboxes");
+            var_dump($var);
+            die();
+           // return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('AppBundle:Default:filter.html.twig', array(
+            'qualifications' => $qualifications
+        ));
+    }
 }

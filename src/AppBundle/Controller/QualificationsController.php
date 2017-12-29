@@ -48,7 +48,7 @@ class QualificationsController extends Controller
             $em->persist($qualification);
             $em->flush();
 
-            return $this->redirectToRoute('qualifications_show', array('id' => $qualification->getId()));
+            return $this->redirectToRoute('qualifications_index');
         }
 
         return $this->render('qualifications/new.html.twig', array(

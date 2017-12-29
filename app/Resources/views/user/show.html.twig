@@ -1,40 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User</h1>
-
-    <table>
+    <h1>{{ user.username }}</h1>
+    <span><b>Informacje o użytkowniku</b></span>
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ user.id}}</td>
             </tr>
             <tr>
-                <th>Username</th>
+                <th>Nazwa użytkownika</th>
                 <td>{{ user.username}}</td>
             </tr>
             <tr>
-                <th>EMail</th>
+                <th>e-mail</th>
                 <td>{{ user.email}}</td>
             </tr>
             <tr>
-                <th>Role</th>
-                <td>{{ user.roles[0]}}</td>
-            </tr>
-            <tr>
-                <th>Qualifications</th>
+                <th>Kwalifikacje</th>
                 <td>
                     {% for qualification in user.qualifications %}
                         {{ qualification.name }} <br />
                     {% endfor %}
                 </td>
             </tr>
+        <tr>
+            <th>Ostatnio zalogowany</th>
+            <td>{{ user.lastLogin|date('Y-m-d  H:i:s') }}</td>
+        </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <a class="btn btn-info" href="{{ path('user_index') }}">Powrót do listy</a>
+
 {% endblock %}

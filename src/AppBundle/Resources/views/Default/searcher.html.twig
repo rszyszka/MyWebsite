@@ -36,9 +36,8 @@
     {% else %}
         <em>no results found</em>
     {% endfor %}
-    <ul>
-        <li>
-            <a class="nav-link" href="{{ path('announcements_new') }}">Stwórz nowe ogłoszenie</a>
-        </li>
-    </ul>
+
+    </br>
+    <a class="btn btn-info" href="{{ path('announcements_new') }}">Stwórz nowe ogłoszenie</a>
+
 {% endblock %}

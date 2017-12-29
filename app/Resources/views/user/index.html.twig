@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Users list</h1>
+    <h1>Użytkownicy <a class="ml-5 btn btn-outline-primary" href="{{ path('filter') }}">Filtruj</a> </h1>
 
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -14,14 +14,10 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td><a class="btn" href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                 <td>{{ user.username }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                    </ul>
+                    <a class="btn btn-outline-secondary" href="{{ path('user_show', { 'id': user.id }) }}">Pokaż</a>
                 </td>
             </tr>
         {% endfor %}
