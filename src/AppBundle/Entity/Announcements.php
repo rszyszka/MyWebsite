@@ -18,11 +18,8 @@ class Announcements
      */
     private $user;
     /**
-     * @ORM\ManyToMany(targetEntity="Qualifications")
-     * @ORM\JoinTable(name="announcements_qualifications",
-     *      joinColumns={@ORM\JoinColumn(name="announcement_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="requirement_id", referencedColumnName="id")}
-     *      )
+     * @ORM\ManyToMany(targetEntity="Qualifications", inversedBy="announcements")
+     * @ORM\JoinTable(name="announcements_qualifications")
      */
     private $requirements;
 
@@ -43,9 +40,9 @@ class Announcements
     private $title;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="text", type="string", length=255)
+     * @ORM\Column(name="text", type="text", length=1023)
      */
     private $text;
 

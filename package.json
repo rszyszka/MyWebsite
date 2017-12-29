@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/rszyszka/MyWebsite#readme",
   "dependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^4.0.0-beta.2"
   }
 }

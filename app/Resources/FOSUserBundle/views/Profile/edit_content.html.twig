@@ -1,0 +1,9 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+    {{ form_widget(form) }}
+    <div>
+        <input class="btn btn-info" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+        <a class="btn btn-info" href="{{ path('account') }}">Anuluj</a>
+    </div>
+{{ form_end(form) }}

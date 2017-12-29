@@ -1,21 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Announcement edit</h1>
+    <h1>Edycja ogłoszenia</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input class="btn btn-info" type="submit" value="Edytuj" />
+        <a class="btn btn-info" href="{{ path('announcements_show' , {'id':announcement.id}) }}">Anuluj</a>
     {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('announcements_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

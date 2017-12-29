@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input class="btn btn-info" type="submit" value="Edytuj" />
+    <a class="btn btn-info" href="{{ path('account') }}">Anuluj</a>
+    {{ form_end(form) }}
+{% endblock %}

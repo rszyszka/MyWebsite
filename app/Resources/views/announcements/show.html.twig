@@ -1,36 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Announcement</h1>
+    <h1 class="card-header">{{ announcement.title }}</h1>
+    <div class="card-body border">
+        <p1>{{ announcement.text }}</p1>
+        </br></br>
+        <p1><b>Wymagania:</b></p1>
+        <ul>
+            {% for req in announcement.requirements %}
+                <li>
+                    {{ req.name }}
+                </li>
+            {% endfor %}
+        </ul>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ announcement.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ announcement.title }}</td>
-            </tr>
-            <tr>
-                <th>Text</th>
-                <td>{{ announcement.text }}</td>
-            </tr>
-        </tbody>
-    </table>
+        </br>
+        <p1><b>Kontakt:</b></p1>
+        <ul>
+            <li>
+                {{ announcement.user.email }}
+            </li>
+        </ul>
 
-    <ul>
-        <li>
-            <a href="{{ path('announcements_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('announcements_edit', { 'id': announcement.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        {% if(announcement.user == app.user) %}
+        </br>
+        {{ form_start(delete_form) }}
+            <a class="btn btn-info" href="{{ path('announcements_edit', { 'id': announcement.id }) }}">Edytuj</a>
+            <input class="btn btn-info" type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+        {% endif %}
+
+    </div>
+
+    </br>
+    <a class="btn btn-outline-secondary" href="{{ path('announcements_index') }}">Powrót do listy</a>
+
 {% endblock %}

@@ -1,41 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Announcements list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Text</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <form role="search" method="post" action="{{ path('search') }}" class="form-horizontal">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Wyszukaj</legend>
+
+            <!-- Search input-->
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input id="searchinput" name="searchinput" placeholder="szukaj..." class="form-control input-md" type="search">
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+
+    <h4>OFERTY PRACY</h4>
+
+        <div class="container m-0">
+            <ul class="m-0 list-group">
         {% for announcement in announcements %}
-            <tr>
-                <td><a href="{{ path('announcements_show', { 'id': announcement.id }) }}">{{ announcement.id }}</a></td>
-                <td>{{ announcement.title }}</td>
-                <td>{{ announcement.text }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('announcements_show', { 'id': announcement.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('announcements_edit', { 'id': announcement.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
+
+            <li class="p-0 list-group-item text-uppercase text-justify bg-light text-secondary" href="{{ path('announcements_show', { 'id': announcement.id }) }}">
+                <a class="m-0 p-0 nav-link" href="{{ path('announcements_show', { 'id': announcement.id }) }}">
+                    <div class="m-0 row">
+                        <div class="p-0 m-0 col-md-2">
+                            <img class="m-0" src="{{ asset('public/plug_company_logo.jpg') }}" alt="logo">
+                        </div>
+                        <div class="m-0 col-md-10">
+                           <b>{{ announcement.title }}</b>
+                        </div>
+                    </div>
+                </a>
+            </li>
+
+        {% endfor %}
+            </ul>
+        </div>
     <ul>
         <li>
-            <a href="{{ path('announcements_new') }}">Create a new announcement</a>
+            <a class="nav-link" href="{{ path('announcements_new' , { 'user': app.user }) }}">Stwórz nowe ogłoszenie</a>
         </li>
     </ul>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Announcements;
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -33,13 +34,13 @@ class AnnouncementsController extends Controller
 
     /**
      * Creates a new announcement entity.
-     *
      * @Route("/new", name="announcements_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
         $announcement = new Announcements();
+        $announcement->setUser($this->getUser());
         $form = $this->createForm('AppBundle\Form\AnnouncementsType', $announcement);
         $form->handleRequest($request);
 
@@ -88,7 +89,7 @@ class AnnouncementsController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('announcements_edit', array('id' => $announcement->getId()));
+            return $this->redirectToRoute('announcements_show', array('id' => $announcement->getId()));
         }
 
         return $this->render('announcements/edit.html.twig', array(

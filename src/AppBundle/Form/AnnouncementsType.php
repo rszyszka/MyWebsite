@@ -13,7 +13,7 @@ class AnnouncementsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('text')->add('user')->add('requirements');
+        $builder->add('title')->add('text')->add('requirements');
     }
     
     /**

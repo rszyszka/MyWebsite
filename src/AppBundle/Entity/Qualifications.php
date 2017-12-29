@@ -28,6 +28,27 @@ class Qualifications
      */
     private $name;
 
+    /**
+     * Many qualifications have Many announcements.
+     * @ORM\ManyToMany(targetEntity="Announcements", mappedBy="requirements")
+     */
+    private $announcements;
+
+    /**
+     * @return mixed
+     */
+    public function getAnnouncements()
+    {
+        return $this->announcements;
+    }
+
+    /**
+     * @param mixed $announcements
+     */
+    public function setAnnouncements($announcements)
+    {
+        $this->announcements = $announcements;
+    }
 
     /**
      * Get id

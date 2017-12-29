@@ -42,3 +42,5 @@
 
 # Libraries
 /vendor/
+/node_modules/
+/web/public/node_modules/

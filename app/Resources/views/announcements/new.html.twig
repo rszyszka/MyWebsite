@@ -1,16 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Announcement creation</h1>
+    <h1>Tworzenie ogłoszenia</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input class="btn btn-outline-secondary" type="submit" value="Stwórz" />
+        <a class="btn btn-outline-secondary" href="{{ path('announcements_index') }}">Powrót do listy</a>
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('announcements_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}

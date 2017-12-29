@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <form role="search" method="post" action="{{ path('search') }}" class="form-horizontal">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Wyszukaj</legend>
+
+            <!-- Search input-->
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input id="searchinput" name="searchinput" placeholder="szukaj..." class="form-control input-md" type="search">
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+
+    <h4>OFERTY PRACY</h4>
+    {% for announcement in result %}
+        <li class="p-0 list-group-item text-uppercase text-justify bg-light text-secondary" href="{{ path('announcements_show', { 'id': announcement.id }) }}">
+            <a class="m-0 p-0 nav-link" href="{{ path('announcements_show', { 'id': announcement.id }) }}">
+                <div class="m-0 row">
+                    <div class="p-0 m-0 col-md-2">
+                        <img class="m-0" src="{{ asset('public/plug_company_logo.jpg') }}" alt="logo">
+                    </div>
+                    <div class="m-0 col-md-10">
+                        <b>{{ announcement.title }}</b>
+                    </div>
+                </div>
+            </a>
+        </li>
+    {% else %}
+        <em>no results found</em>
+    {% endfor %}
+    <ul>
+        <li>
+            <a class="nav-link" href="{{ path('announcements_new') }}">Stwórz nowe ogłoszenie</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,50 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('public/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" />
-            <link rel="stylesheet" href="{{ asset('public/myStyles.css') }}" />
+            <link rel="stylesheet" href="{{ asset('public/node_modules/bootstrap/dist/css/bootstrap.min.css') }}" type="text/css" />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     </head>
 
     <body>
-    <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li><a href="{{ path('homepage') }}">Home</a></li>
-            <li><a href="{{ path('info') }}">Info</a></li>
+    <div class="py-5 text-center opaque-overlay" style="background-image: url({{ asset('public/cover_event.jpg') }});">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12 text-white">
+                    <h1 class="display-3 mb-4">Dream job for everyone</h1>
+                    <p class="lead mb-5">Mission, Vision &amp; Perspectives</p>
+                    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-lg mx-1 btn-secondary">Dołącz do nas!</a>
+                    <a href="{{ path('info') }}" class="btn btn-lg btn-primary mx-1">Dowiedz się więcej
+                        <br> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="bg-dark navbar navbar-dark navbar-expand-md">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('homepage') }}">Strona główna</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav mr-auto">
+
+            <li class="nav-item"><a class="nav-link" href="{{ path('info') }}">O nas</a></li>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <li><a href="{{ path('announcements_index') }}">Announcements</a></li>
-                <li><a href="{{ path('qualifications_index') }}">Qualifications</a></li>
-                <li><a href="{{ path('user_index') }}">Users</a>
-                <li><a href="{{ path('account') }}">My Account</a></li>
-                <li>
-                    <a href="{{ path('fos_user_security_logout') }}">
+                <li class="nav-item"><a class="nav-link" href="{{ path('announcements_index') }}">Ogłoszenia</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('account') }}">Moje konto</a></li>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item"><a class="nav-link" href="{{ path('qualifications_index') }}">Kwalifikacje</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('user_index') }}">Użytkownicy</a>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('fos_user_security_logout') }}">
                         {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                     </a>
                 </li>
         {% else %}
-            <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
-            <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+            <li  class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+            <li  class="nav-item"><a class="nav-link" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
         {% endif %}
         </ul>
     </div>
-    </nav>
-    <div class="page-header container text-center">
-        <img src="{{ asset('public/work.jpg') }}">
     </div>
-    <div class="container">
+    </nav>
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                {% block body %}
 
 
-        {% block body %}{% endblock %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-1 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mt-3 text-center">
+                    <p>© Copyright 2017 Rafał Szyszka - All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
         {% block javascripts %}
             <script src="{{ asset('public/node_modules/jquery/dist/jquery.min.js') }}"></script>
             <script src="{{ asset('public/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
         {% endblock %}
-    </div>
     </body>
 </html>

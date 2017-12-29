@@ -4,8 +4,9 @@
 
 {% block body %}
 <h1>My account</h1>
-    <b>Informacje o koncie użytkownika.</b>
-    <table>
+    <span><b>Informacje o koncie użytkownika.</b></span>
+
+    <table class="table table-striped">
         <tbody>
         <tr>
             <th>Id</th>
@@ -33,4 +34,7 @@
         </tr>
         </tbody>
     </table>
+
+    <a class="btn btn-info" href="{{ path('fos_user_profile_edit') }}">Edytuj informacje o koncie</a>
+    <a class="btn btn-info" href="{{ path('addQualifications', { 'id': app.user.id }) }}">Edytuj kwalifikacje</a>
 {% endblock %}
