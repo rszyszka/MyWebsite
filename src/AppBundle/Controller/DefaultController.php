@@ -84,16 +84,35 @@ class DefaultController extends Controller
     public function filterAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $qualifications = $em->getRepository('AppBundle:Qualifications')->findAll();
-
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->getDoctrine()->getManager()->flush();
-            $var = $request->get("checkboxes");
-            var_dump($var);
-            die();
-           // return $this->redirectToRoute('homepage');
+            $data = $request->request->get("checkboxes");
+
+            $qb = $this->getDoctrine()->getManager()->createQueryBuilder(); //query builder method
+            $qb->addSelect('u');
+            $qb->from('AppBundle:User', 'u');
+            $qb->join('u.qualifications','q');
+            $qb->where('q.id IN (:data)');
+            $qb->setParameter('data' , $data);
+
+//            for($i = 0 ; $i < sizeof($data); $i++ ) {
+//                $qb->andWhere('q.id = :data');
+//                $qb->setParameter('data', $data[$i]);
+//            }
+            $query = $qb->getQuery();
+
+//            $query = $em->createQuery( //create query method
+//                'SELECT u FROM AppBundle:User u JOIN u.qualifications q WHERE q.id IN (:data)'
+//            )->setParameter('data' , $data);
+
+            $users = $query->getResult();
+            return $this->render('user/index.html.twig', array(
+                'users' => $users
+            ));
         }
+
+        $qualifications = $em->getRepository('AppBundle:Qualifications')->findAll();
 
         return $this->render('AppBundle:Default:filter.html.twig', array(
             'qualifications' => $qualifications

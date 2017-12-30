@@ -3,6 +3,9 @@
 {% block body %}
     <h1>Użytkownicy <a class="ml-5 btn btn-outline-primary" href="{{ path('filter') }}">Filtruj</a> </h1>
 
+    {% if(users == NULL ) %}
+        <i>No results found</i>
+    {% else %}
     <table class="table table-striped">
         <thead>
             <tr>
@@ -23,6 +26,6 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {% endif %}
     
 {% endblock %}
